@@ -13,7 +13,7 @@ O projeto foi desenvolvido como aplicação prática dos conceitos de Arquitetur
 - **Saída Visual:** DotMatrix (Matriz de LEDs) e Displays BCD (para pontuação).
 
 ## 🏗️ 4. Estrutura do Projeto
-A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo boas práticas de design de hardware. O circuito principal (`proba2.circ`) atua como a placa-mãe (top-level) que interliga os diversos barramentos (buses de 16 ou 32 bits) e coordena a comunicação entre os submódulos de clock, processamento de vídeo (sprites), controle de inputs e detecção de colisões.
+A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo boas práticas de design de hardware. O circuito principal (`principal.circ`) atua como a placa-mãe (top-level) que interliga os diversos barramentos (buses de 16 ou 32 bits) e coordena a comunicação entre os submódulos de clock, processamento de vídeo (sprites), controle de inputs e detecção de colisões.
 
 ## ⚙️ 5. Circuitos Implementados e Funcionamento Detalhado
 
@@ -72,7 +72,7 @@ O jogo opera como uma Máquina de Estados Finita (FSM) com as seguintes condiç�
 ## ▶️ 7. Como Executar ou Simular o Projeto
 1. Instale o simulador [Logisim](http://www.cburch.com/logisim/) (ou Logisim-Evolution, dependendo da versão utilizada).
 2. Clone este repositório.
-3. Abra o arquivo principal do projeto (`proba2.circ`) no Logisim.
+3. Abra o arquivo principal do projeto (`principal.circ`) no Logisim.
 4. Habilite a simulação de ticks do clock pressionando `Ctrl + K`.
 5. Utilize a ferramenta de "Mãozinha" (Poke Tool) ou o mapeamento de teclado configurado para acionar o botão de pulo (Input).
 6. Para reiniciar, pressione o botão de Reset no circuito principal.
