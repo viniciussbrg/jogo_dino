@@ -18,7 +18,7 @@ A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo
 ## ⚙️ 5. Circuitos Implementados e Funcionamento Detalhado
 
 ### 🕹️ 5.1. Circuito Principal (Top-Level)
-<img width="1067" height="756" alt="Captura de tela 2026-06-03 203239" src="https://github.com/user-attachments/assets/3a54bc44-4ec6-4077-a9a9-8e0753424e14" />
+<img width="1284" height="754" alt="image" src="https://github.com/user-attachments/assets/5e18efb6-c046-4d85-8a3e-3cbcf0fa7c0e" />
 
 - **Descrição Resumida:** Atua como a placa-mãe do sistema, integrando todos os sub-circuitos e roteando as informações para a Display Matrix.
 - **Funcionamento Interno:** Os dados das posições do cacto, do pássaro e do dinossauro convergem para uma série de portas lógicas (ORs) antes de alimentar a Matriz de LEDs. Isso garante que se dois sprites ocuparem o mesmo espaço visual, o pixel correspondente acenda (sobreposição gráfica).
@@ -26,13 +26,13 @@ A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo
   - *Entradas:* Sinal de Clock global, Input do usuário (botão de pulo).
   - *Saídas:* Barramentos conectados à Matriz de LEDs e aos Displays BCD.
 
-### ⏱️ 5.2. Gerador de Clock (`clock zmiana.circ`)
+### ⏱️ 5.2. Gerador de Clock (clock_seletor)
 <img width="681" height="445" alt="Captura de tela 2026-06-03 204132" src="https://github.com/user-attachments/assets/296c6a52-571f-43c1-966d-2419a1cd5925" />
 
 - **Descrição Resumida:** Dita o ritmo do jogo e aumenta a dificuldade (velocidade) com o passar do tempo.
 - **Funcionamento Interno:** Utiliza contadores para registrar o tempo de jogo. Ao atingir determinados limites (thresholds), a frequência do sinal de clock distribuído para os registradores de deslocamento é aumentada, acelerando os obstáculos.
 
-### 🏃 5.3. Controlador do Personagem (`dinozaur wyswietlanie.circ`)
+### 🏃 5.3. Controlador do Personagem (`dino_sprite.circ`)
 <img width="1480" height="885" alt="image" src="https://github.com/user-attachments/assets/7a0ff08e-dd0c-48a7-85a5-c06340ccea33" />
 
 - **Descrição Resumida:** Processa os frames do dinossauro (correndo, pulando e parado).
@@ -41,13 +41,13 @@ A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo
   - *Entradas:* Sinal de pulo (botão), clock.
   - *Saídas:* Barramento com a máscara de pixels atual do dinossauro.
 
-### 🌵 5.4. Módulo de Geração de Obstáculos (`kaktus wyswietlanie.circ` / `mały_lub_duży.circ`)
+### 🌵 5.4. Módulo de Geração de Obstáculos (`cacto_sprite.circ` / `obstaculo_tamanho.circ`)
 <img width="1310" height="779" alt="image" src="https://github.com/user-attachments/assets/90b96db5-44a9-4d8b-890f-d08c174e6696" /> <img width="748" height="226" alt="image" src="https://github.com/user-attachments/assets/4f5764a5-f2d8-4067-b89b-8ff902a06b24" />
 
 - **Descrição Resumida:** Gera e desloca os obstáculos terrestres (cactos) e aéreos (pássaros) pela tela.
 - **Funcionamento Interno:** Utiliza o componente Random nativo do Logisim para gerar um bit (0 ou 1) que atua como seletor de um MUX, decidindo entre um cacto grande ou pequeno. Contadores definem o *cooldown* entre spawns, garantindo espaço físico e computacional para o pulo. O movimento é feito via Shift Registers (deslocadores) da direita para a esquerda.
 
-### 💥 5.5. Módulo de Colisão (`przegrana.circ`)
+### 💥 5.5. Módulo de Colisão (`game_over.circ`)
 <img width="1484" height="908" alt="image" src="https://github.com/user-attachments/assets/fae05cac-af1b-49e8-a6cb-7ebb51d37674" />
 
 - **Descrição Resumida:** Detecta impacto entre o dinossauro e obstáculos.
@@ -56,7 +56,7 @@ A arquitetura do projeto foi estruturada de maneira fortemente modular, seguindo
   - *Entradas:* Coordenadas do Dinossauro, Coordenadas dos Obstáculos.
   - *Saídas:* Sinal de Stop / Game Over.
 
-### 💯 5.6. Módulo de Pontuação (`wynik wyświetlanie.circ`)
+### 💯 5.6. Módulo de Pontuação (`pontuacao_exibicao.circ`)
 <img width="1470" height="825" alt="image" src="https://github.com/user-attachments/assets/cf899390-692e-40db-9a7b-59e76494ee98" /> 
 
 - **Descrição Resumida:** Registra a pontuação do jogo.
